@@ -1,0 +1,83 @@
+<html>
+<head>
+    <title>Admin Login</title>
+    <style media="screen">
+      body, html {
+        height: 100%;
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+      .bg-image {
+        background-image: url("back.jpg");
+        filter: blur(8px);
+        -webkit-filter: blur(8px);
+        height: 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+      .Admin{
+        background-color: rgb(0,0,0);
+        background-color: rgba(0,0,0, 0.4);
+        color: white;
+        font-weight: bold;
+        border: 2px solid #f2f2f2;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 2;
+        width: 90%;
+        height: 80%;
+        padding: 20px;
+        text-align: center;
+      }
+    </style>
+</head>
+<body>
+  <div class="bg-image">  </div>
+    <div class = "Admin">
+      <form action="registration.php" method="post">
+        <h2 style="position:absolute;top:10px;left:100px;">Registration Form</h2>
+        <label> Name:</label>
+        <input type="text" name="name" size="15" required/> <br><br>
+        <label>Password</label>
+        <<input type="password" name="password" /><br><br>
+        <label>Roll Number:</label>
+        <input type="text" name="rollno" size="15"required/> <br> <br>
+        <label>Branch:</label>
+        <select name="branch">
+        <option value="CSE">Computer Science Engineering</option>
+        <option value="ECE">Electronics & Communications Engineering</option>
+        <option value="ME">Mechanical engineering</option>
+        <option value="EEE">Electrical & Electronics Engineering</option>
+        <option value="CE">Civil engineering</option>
+        <option value="Other">Other</option>
+        </select>  <br><br>
+        <label>Passout Year:</label>
+        <input type="text" name="passout_year" size="15" required/> <br> <br>
+        <label>HackerRank Username:</label>
+        <input type="text" name="HackerRank_Username" size="15"/>
+        <label>HackerRank Score:</label>
+        <input type="text" name="HackerRank_score" size="15"/> <br> <br>
+        <label>CodeChef Username:</label>
+        <input type="text" name="CodeChef_Username" size="15"/>
+        <label>CodeChef Score:</label>
+        <input type="text" name="CodeChef_Score" size="15"/> <br> <br>
+        <label>HackerEarth Username:</label>
+        <input type="text" name="HackerEarth_Username" size="15"/>
+        <label>HackerEarth Score:</label>
+        <input type="text" name="HackerEarth_Score" size="15"/> <br> <br>
+        <label>Codeforces Username:</label>
+        <input type="text" name="Codeforces_Username" size="15"/>
+        <label>Codeforces Score:</label>
+        <input type="text" name="CodeForces_Score" /><br><br>
+        <button type="submit">Register</button>
+      </form>
+    </div>
+</body>
+</html>

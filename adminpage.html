@@ -1,0 +1,142 @@
+
+<html>
+<head>
+    <title>Admin Login</title>
+    <style media="screen">
+      body, html {
+        height: 100%;
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+      .bg-image {
+        background-image: url("back.jpg");
+        filter: blur(8px);
+        -webkit-filter: blur(8px);
+        height: 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+      .bg-text {
+        background-color: rgb(0,0,0);
+        background-color: rgba(0,0,0, 0.4);
+        color: white;
+        font-weight: bold;
+        border: 2px solid #f2f2f2;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 2;
+        width: 90%;
+        height: 100%;
+        padding: 20px;
+        text-align: center;
+      }
+      .Logout{
+        cursor: pointer;
+        border:none;
+        background-color: transparent;
+        height: 50px;
+        width: 100px;
+        float:right;
+        color: white;
+        font-size: 1.5em;
+        box-shadow: 0 6px 6px rgba(0, 0, 0, 0.6);
+      }
+      table.table {
+  margin-left: auto;
+  margin-right: auto;
+  color:white;
+  border-collapse: collapse;
+}
+      th{
+        background-color: #00b9b2;
+      }
+      tr:nth-child(even) {      color: white;}
+      tr:nth-child(odd) {      color: white;}
+    </style>
+</head>
+<body>
+  <div class="bg-image"></div>
+  <div class="bg-text" id="content">
+    <button class="Logout" type="button" name="button"><a style="text-decoration:none;color:white;" href="project 1.html">Logout</a></button>
+    <h2>Student Information</h2>
+    <table class="table">
+    <tr>
+    <th>Roll No</th>
+    <th>Name</th>
+    <th>Branch</th>
+    <th>Passout Year</th>
+    <th>CodeChef Username</th>
+    <th>CodeChef Score</th>
+    <th>HackerRank Username</th>
+    <th>HackerRank Score</th>
+    <th>CodeForces Username</th>
+    <th>CodeForces Score</th>
+    <th>HackerEarth Username</th>
+    <th>HackerEarth Score</th>
+
+    </tr>
+    <?php
+    $conn = mysqli_connect("localhost", "root", "", "admin_user");
+    // Check connection
+    if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+    }
+    $sql = "SELECT * FROM users";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+    // output data of each row
+    while($row = $result->fetch_assoc()) {
+    echo "<tr><td>" . $row["RollNo"]. "</td><td>" . $row["Name"] . "</td><td>".$row['Branch']."</td><td>".$row['Passout_Year']."</td><td>".$row['CodeChef_Username']."</td>
+  <td>".$row['CodeChef_Score']."</td><td>".$row['HackerRank_Username']."</td><td>".$row['HackerRank_Score']."</td>
+<td>".$row['CodeForces_Username']."</td><td>".$row['CodeForces_Score']."</td><td>".$row['HackerEarth_Username']."</td><td>".$row['HackerEarth_Score']."</td></tr>";
+    }
+    echo "</table>";
+    } else { echo "0 results"; }
+    $conn->close();
+    ?>
+    </table>
+    <!--h2>Top Performer</h2>
+    <?php
+    $conn = mysqli_connect("localhost", "root", "", "admin_user");
+    if (!$conn) {
+      die("Connection failed: " . mysqli_connect_error());
+    }
+
+    $sql = "SELECT CodeChef_Username,CodeChef_Score,HackerRank_Username,HackerRank_Score,CodeForces_Username,CodeForces_Score,HackerEarth_Username,HackerEarth_Score FROM users WHERE RollNo='$username'";
+    $result = mysqli_query($conn, $sql);
+
+    if (mysqli_num_rows($result) > 0) {
+      // output data of each row
+      while($row = mysqli_fetch_assoc($result)) {
+        echo "<h3 style='position:absolute;top:70px;left:150px;'>Username:  ". $row["HackerRank_Username"]. "</h3><br>";
+        echo "<h3 style='position:absolute;top:100px;left:150px;'>Score:  ". $row["HackerRank_Score"]. "</h3><br>";
+        echo "<h3 style='position:absolute;top:200px;left:650px;'>Username:  ". $row["CodeChef_Username"]. "</h3><br>";
+        echo "<h3 style='position:absolute;top:230px;left:650px;'>Score:  ". $row["CodeChef_Score"]. "</h3><br>";
+        echo "<h3 style='position:absolute;top:70px;left:650px;'>Username:  ". $row["CodeForces_Username"]. "</h3><br>";
+        echo "<h3 style='position:absolute;top:100px;left:650px;'>Score:  ". $row["CodeForces_Score"]. "</h3><br>";
+        echo "<h3 style='position:absolute;top:200px;left:150px;'>Username:  ". $row["HackerEarth_Username"]. "</h3><br>";
+        echo "<h3 style='position:absolute;top:230px;left:150px;'>Score:  ". $row["HackerEarth_Score"]. "</h3><br>";
+
+        echo "<i class='fab fa-hackerrank fa-2x' style='color:green;position:absolute;top:40px;left:150px;'>HackerRank</i>";?>
+        <p style="position:absolute;top:20px;left:650px;font-size:20px;"><span class="iconify" data-icon="simple-icons:codeforces" style=";color: red;" data-width="36"></span>CodeForces</p>
+        <p style="position:absolute;top:140px;left:150px;font-size:30px;"><span class="iconify" data-icon="simple-icons:hackerearth" style="color: green;"></span>HackerEarth</p>
+        <p style="position:absolute;top:140px;left:650px;font-size:30px;"><span class="iconify" data-icon="simple-icons:codechef" style="color: red;"></span>CodeChef</p>
+
+        <?php
+      }
+    } else {
+      echo "0 results";
+    }
+
+    mysqli_close($conn);
+    ?>-->
+  </div>
+</body>
+</html>
